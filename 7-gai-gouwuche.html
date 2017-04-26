@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+	<div id="box">
+		<h1>合计{{sum.toFixed(2)}}</h1>
+		<table  class="table table-bordered">
+			<thead>
+				<th>商品</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>总价</th>
+			</thead>
+			<tbody>
+				<tr is="list" v-bind:val="fruit" v-for="(fruit,ind) in fruitList"></tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="vue.js"></script>
+	<script>
+	Vue.component('list',{
+		props:['val'],
+		template:'<tr>\
+					<td>{{val.fruit}}</td>\
+					<td>{{val.price}}</td>\
+					<td>\
+					<button class="add1" v-on:click="add(ind)">+</button>\
+					<span>{{val.num}}</span>\
+					<button class="dele1" v-on:click="dele(ind)">-</button>\
+					</td>\
+					<td>\
+					{{val.sumPrice}}\
+					</td>\
+				</tr>'
+				
+	})
+		new Vue({
+			el:"#box",
+			data:{
+				sum:0,
+				fruitList:[
+				  {fruit:"香蕉",price:1.5,num:0,sumPrice:0},
+				  {fruit:"苹果",price:2.5,num:0,sumPrice:0},
+				  {fruit:"橙子",price:3.5,num:0,sumPrice:0},
+				],
+			},
+			methods:{
+				add:function(i){
+					this.sum=0;
+					this.fruitList[i].num++;
+					this.fruitList[i].sumPrice=this.fruitList[i].price*this.fruitList[i].num
+					for (var i in this.fruitList) {
+						this.sum=this.sum+this.fruitList[i].sumPrice
+					}
+				},
+				dele:function(i){
+					if (this.fruitList[i].num>0) {
+						this.sum=0;
+						this.fruitList[i].num--;
+						this.fruitList[i].sumPrice=this.fruitList[i].price*this.fruitList[i].num
+						for(var i in this.fruitList){
+							this.sum=this.sum+this.fruitList[i].sumPrice
+						}
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

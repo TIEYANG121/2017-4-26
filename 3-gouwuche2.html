@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#bigbox{
+			width: 500px;
+			height: 700px;
+			border:1px solid blue;
+			margin: 0 auto;
+		}
+		#box1{
+			display:inline-block;
+			font-size:20px;
+			width:161px;
+			height: 150px;
+			margin-top:20px;
+
+			
+		}
+		#box1 img,span,button{
+			display: block;
+			margin-left: 20px;
+		}
+		.box2{
+			width: 500px;
+			height: 150px;
+			border:1px solid blue;
+		}
+		.box3{
+			width: 500px;
+			height: 150px;
+			border:1px solid blue;
+		}
+		.box4{
+			width: 500px;
+			height: 150px;
+			border:1px solid blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="bigbox">
+		<div id="box1">
+			<img src="1.jpg" alt="">
+			<span>单价:5.5元</span>
+			<button v-on:click="change">购买</button>
+		</div>
+		<div id="box1">
+			<img src="2.jpg" alt="">
+			<span>单价：6.5元</span>
+			<button v-on:click="ch">购买</button>
+		</div>
+		<div id="box1">
+			<img src="3.jpg" alt="">
+			<span>单价：7.5元</span>
+			<button v-on:click="chan">购买</button>
+		</div>
+		<h1>合计{{sum.toFixed(2)}}</h1>
+		<div class="box2" v-if='showcom'>
+		
+			<h1>苹果</h1>
+			<span>单价:5.5元</span>
+		</div>
+		<div class="box3" v-if='showcom'>
+		
+			<h1>橘子</h1>
+			<span>单价:6.5元</span>
+		</div>
+		<div class="box4" v-if='showcom'>
+		
+			<h1>柿子</h1>
+			<span>单价:7.5元</span>
+		</div>
+		
+	</div>
+	<script src="vue.js"></script>
+	<script>
+		new	Vue({
+			el:"#bigbox",
+			data:{
+				sum:0,
+				array:[],
+				 showcom: false
+			},
+			methods:{
+				change:function(){
+					this.showcom = true;
+					// this.array.push(this.showcom)
+				},
+				ch:function(){
+					this.showcom = true;
+					// this.array.push(this.showcom)
+				},
+				chan:function(){
+					this.showcom = true;
+					// this.array.push(this.showcom)
+				}
+			}
+
+		})
+	</script>
+	
+</body>
+</html>

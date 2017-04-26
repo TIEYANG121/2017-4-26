@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<father></father>
+	</div>
+	<script src="vue.js"></script>
+	<script>
+		Vue.component('son',{
+			props:["fatherData"],
+			template:'<h2>数据:{{fatherData}}</h2>'
+		});
+		Vue.component('father',{
+			template:'<div>\
+							<h1>父级</h1>\
+			 				<son v-bind:fatherData="title"></son>\
+					  </div>',
+			data:function(){
+				return{
+					title:'来自星星的你'
+				}
+			}	
+		});
+		new Vue({
+			el:"#box",
+		})
+	</script>
+</body>
+</html>

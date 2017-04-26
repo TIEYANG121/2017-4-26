@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<father></father>
+	</div>
+	<script src="vue.js"></script>
+	<script>
+		Vue.component('son',{
+			props:["fatherData"],
+			template:'<div>\
+			<button v-on:click="showData">传递数据</button>\
+			</div>\
+			',
+			data:function(){
+				return{
+					title:'现在的数据'
+				}
+			},
+			methods:{
+				showData:function(){
+					this.$emit('sonShowData'
+						,this.title)
+				}
+			}
+
+		});
+		Vue.component('father',{
+			template:'<h1>f:{{title}}<son v-on:sonShowData="fatherShowData"></son></h1>',
+			data:function(){
+				return{
+					title:'原来的数据'
+				}
+			},
+			methods:{
+				fatherShowData:function(myData){
+						this.title=myData
+				}
+			}	
+		});
+		new Vue({
+			el:"#box",
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<button class="dele1" v-on:click="dele">-</button>
+		<span>{{num}}</span>
+		<button class="add1" v-on:click="add">+</button>
+	</div>
+	<script src="vue.js"></script>
+	<script>
+		new Vue({
+			el:"#box",
+			data:{
+				num:0
+			},
+			methods:{
+				add:function(ind){
+					this.num++
+
+
+					},
+				dele:function(ind){
+					this.num--
+				},
+				},
+			
+		})
+	</script>
+</body>
+</html>

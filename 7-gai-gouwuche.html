@@ -16,14 +16,22 @@
 				<th>总价</th>
 			</thead>
 			<tbody>
-				<tr is="list" v-bind:val="fruit" v-for="(fruit,ind) in fruitList"></tr>
+				<tr 
+				is="list"
+				v-bind:val="val"
+				v-bind:ind="ind"
+				v-for="(val,ind) in fruitList"
+				v-on:add="add"
+				v-on:sub="sub">
+					
+				</tr>
 			</tbody>
 		</table>
 	</div>
 	<script src="vue.js"></script>
 	<script>
 	Vue.component('list',{
-		props:['val'],
+		props:['val','ind'],
 		template:'<tr>\
 					<td>{{val.fruit}}</td>\
 					<td>{{val.price}}</td>\
@@ -35,8 +43,16 @@
 					<td>\
 					{{val.sumPrice}}\
 					</td>\
-				</tr>'
-				
+				</tr>',
+
+		methods:{
+			add:function(ind){
+				this.$emit('add',ind)
+			},
+			dele:function(ind){
+				this.$emit('add',ind)
+			}
+		}		
 	})
 		new Vue({
 			el:"#box",
